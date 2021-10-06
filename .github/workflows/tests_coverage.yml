@@ -20,7 +20,7 @@ jobs:
         run: pip install pytest pytest-cov
       - name: Testing
         run: |
-          exec 5>&1; COVERAGE="$(pytest --cov=projekt_wdrozeniowy_prototyp tests | tee >(cat >&1) | grep TOTAL | tr -s ' ' | cut -d ' ' -f4)"
+          exec 5>&1; COVERAGE="$(pytest --cov=projekt_wdrozeniowy_prototyp tests | tee >(cat >&5) | grep TOTAL | tr -s ' ' | cut -d ' ' -f4)"
           echo "COVERAGE=$COVERAGE" >> $GITHUB_ENV
           echo "COLOR=$(case $COVERAGE in 100%) echo "brightgreen" ;; [7-9][0-9]%) echo "green" ;; [4-6][0-9]%) echo "yellow" ;; *) echo "red" ;; esac)" >> $GITHUB_ENV
       - name: Create badge

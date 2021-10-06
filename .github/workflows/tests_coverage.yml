@@ -22,7 +22,7 @@ jobs:
         run: |
           SUMMARY="$(pytest --cov=projekt_wdrozeniowy_prototyp tests)"
           echo $SUMMARY
-          echo "COVERAGE=$(echo $SUMMRY | grep TOTAL | tr -s ' ' | cut -d ' ' -f4)" >> $GITHUB_ENV
+          echo "COVERAGE=$(echo $SUMMARY | grep TOTAL | tr -s ' ' | cut -d ' ' -f4)" >> $GITHUB_ENV
           echo "COLOR=$(case $COVERAGE in 100%) echo "brightgreen" ;; [7-9][0-9]%) echo "green" ;; [4-6][0-9]%) echo "yellow" ;; *) echo "red" ;; esac)" >> $GITHUB_ENV
       - name: Create badge
         uses: schneegans/dynamic-badges-action@v1.1.0

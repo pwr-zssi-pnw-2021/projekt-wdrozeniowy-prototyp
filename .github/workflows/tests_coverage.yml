@@ -1,0 +1,35 @@
+name: Tests coverage
+on:
+  push:
+    branches:
+      - master
+jobs:
+  run-formatting:
+    name: Test code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install pytest and pytest-cov
+        run: pip install pytest pytest-cov
+      - name: Testing
+        run: |
+          SUMMARY="$(pytest --cov=projekt_wdrozeniowy_prototyp tests)"
+          echo $SUMMARY
+          echo "COVERAGE=$(echo $SUMMRY | grep TOTAL | tr -s ' ' | cut -d ' ' -f4)" >> $GITHUB_ENV
+          echo "COLOR=$(case $COVERAGE in 100%) echo "brightgreen" ;; [7-9][0-9]%) echo "green" ;; [4-6][0-9]%) echo "yellow" ;; *) echo "red" ;; esac)" >> $GITHUB_ENV
+      - name: Create badge
+        uses: schneegans/dynamic-badges-action@v1.1.0
+        with:
+          auth: ${{ secrets.GIST_CREATE_KEY }}
+          gistID: 945bb032814d966ad859f99e23f7fe18
+          filename: badge.json
+          label: Test coverage
+          message: ${{ env.COVERAGE }}
+          color: ${{ env.COLOR }}

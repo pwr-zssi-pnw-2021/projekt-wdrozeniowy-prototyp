@@ -1,0 +1,22 @@
+name: Test
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  run-formatting:
+    name: Test code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install pytest and pytest-cov
+        run: pip install pytest pytest-cov
+      - name: Testing
+        run: pytest

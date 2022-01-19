@@ -5,13 +5,16 @@ description = ""
 authors = ["Jakub Ciszek <jakubciszek64@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "~3.9"
+pyalsaaudio = "^0.9.0"
+numpy = "^1.21.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
 black = "^21.9b0"
 ipykernel = "^6.4.1"
 pytest-cov = "^3.0.0"
+seaborn = "^0.11.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

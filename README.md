@@ -8,7 +8,7 @@
 ## How to install
 
 ### Requirements
-- [Python 3](https://www.python.org/)
+- [Python 3.9](https://www.python.org/)
 - [Poetry](https://python-poetry.org/)
 
 ### Installation

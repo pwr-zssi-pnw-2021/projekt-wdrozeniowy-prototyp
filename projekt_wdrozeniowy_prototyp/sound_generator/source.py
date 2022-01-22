@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Optional
 
 import librosa
 import numpy as np
@@ -64,6 +64,45 @@ class FileSource(Source):
 
         data, _ = librosa.load(file, self.sampling_rate)
         return data
+
+    def draw(self) -> Iterable[np.ndarray]:
+        yield from self.data_source
+
+
+class ArraySource(Source):
+    """Numpy array data source.
+
+
+    Can be used for data loaded with other methods.
+    """
+
+    def __init__(
+        self,
+        arr: np.ndarray,
+        arr_sampling_rate: int,
+        target_sampling_rate: Optional[int],
+    ) -> None:
+        """Create new sound data source using numpy array.
+
+
+        Args:
+            arr (np.ndarray): Sound data.
+            arr_sampling_rate (int): Sound data sampling rate.
+            target_sampling_rate (Optional[int]): Target sampling rate. If none or equal to arr, no resampling will be done.
+        """
+        if (
+            target_sampling_rate is not None
+            and arr_sampling_rate != target_sampling_rate
+        ):
+            self.data_source = librosa.resample(
+                arr, arr_sampling_rate, target_sampling_rate
+            )
+            data_sr = target_sampling_rate
+        else:
+            self.data_source = arr
+            data_sr = arr_sampling_rate
+
+        super().__init__(data_sr)
 
     def draw(self) -> Iterable[np.ndarray]:
         yield from self.data_source

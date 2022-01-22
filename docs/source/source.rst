@@ -16,3 +16,9 @@ Source
     :inherited-members:
     :private-members:
     :special-members: __init__
+
+.. autoclass:: ArraySource
+    :members:
+    :inherited-members:
+    :private-members:
+    :special-members: __init__

@@ -8,6 +8,9 @@ jobs:
     name: Test code
     runs-on: ubuntu-latest
     steps:
+      - name: Install sndfile lib
+        run: |
+          sudo apt-get install libsndfile1-dev
       - name: Checkout repository
         uses: actions/checkout@v2
         with:

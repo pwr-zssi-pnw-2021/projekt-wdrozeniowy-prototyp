@@ -10,6 +10,7 @@
 ### Requirements
 - [Python 3.9](https://www.python.org/)
 - [Poetry](https://python-poetry.org/)
+- [Pre-commit](https://pre-commit.com/)
 
 ### Installation
 Install python packages

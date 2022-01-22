@@ -22,3 +22,9 @@ pre-commit install
 ```
 
 ## How to run
+
+## Documentation
+Documentation can be built with make
+```sh
+make html
+```

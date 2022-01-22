@@ -1,4 +1,5 @@
 import pytest
+
 from projekt_wdrozeniowy_prototyp.sound_generator import FileSource
 
 
@@ -10,7 +11,7 @@ def test_file_loading():
 
 @pytest.mark.xfail(raises=FileNotFoundError)
 def test_missing_file():
-    fs = FileSource('./does/not/exists', 42)
+    FileSource('./does/not/exists', 42)
 
 
 def test_draw():

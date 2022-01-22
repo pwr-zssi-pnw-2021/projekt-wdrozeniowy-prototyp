@@ -1,6 +1,7 @@
 import librosa
 import numpy as np
 import pytest
+
 from projekt_wdrozeniowy_prototyp.sound_generator import (
     MFCCPreprocessor,
     RawPreprocessor,

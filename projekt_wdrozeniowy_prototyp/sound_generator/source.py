@@ -31,6 +31,8 @@ class Source(ABC):
 
 
 class FileSource(Source):
+    """Sound file data source."""
+
     def __init__(self, file_path: str, sampling_rate: int) -> None:
         """Create new sound data source using sund file.
 

@@ -12,8 +12,14 @@
 - [Poetry](https://python-poetry.org/)
 
 ### Installation
-```
+```sh
 poetry install
 ```
 
 ## How to run
+
+## Documentation
+Documentation can be built with make
+```sh
+make html
+```

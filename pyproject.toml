@@ -6,7 +6,6 @@ authors = ["Jakub Ciszek <jakubciszek64@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "~3.9"
-pyalsaaudio = "^0.9.0"
 numpy = "^1.21.4"
 librosa = "^0.8.1"
 

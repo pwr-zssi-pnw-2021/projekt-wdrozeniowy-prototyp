@@ -567,14 +567,6 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
-name = "pyalsaaudio"
-version = "0.9.0"
-description = "ALSA bindings"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "pycparser"
 version = "2.21"
 description = "C parser in Python"
@@ -874,7 +866,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "~3.9"
-content-hash = "9364fb1cdf1caf52529905ddd6f2f52bccb1435f55d13cef17ab4b5821a042e8"
+content-hash = "1289731f17e6a613363aeef93b8e1addfea0cc231626358e852d25ce4db0a5ae"
 
 [metadata.files]
 appdirs = [
@@ -1386,9 +1378,6 @@ ptyprocess = [
 py = [
     {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
     {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
-]
-pyalsaaudio = [
-    {file = "pyalsaaudio-0.9.0.tar.gz", hash = "sha256:3ca069c736c8ad2a3047b5033468d983a2480f94fad4feb0169c056060e01e69"},
 ]
 pycparser = [
     {file = "pycparser-2.21-py2.py3-none-any.whl", hash = "sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9"},

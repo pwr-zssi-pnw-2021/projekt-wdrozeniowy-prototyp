@@ -12,8 +12,13 @@
 - [Poetry](https://python-poetry.org/)
 
 ### Installation
-```
+Install python packages
+```sh
 poetry install
+```
+Install pre-commit hooks
+```sh
+pre-commit install
 ```
 
 ## How to run

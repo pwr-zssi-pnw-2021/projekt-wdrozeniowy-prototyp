@@ -8,7 +8,15 @@ from .source import Source
 
 
 class SoundGenerator:
-    """Sound generator combines sound data source and preprocessor to generate a stream of sound data chunks."""
+    """Sound generator combines sound data source and preprocessor to generate a stream of sound data chunks.
+
+    Attributes:
+        source (Source): Sound data source.
+        preprocessor (Preprocessor): Sound data preprocessor. Defaults to RawPreprocessor.
+        chunk_size (int): Size of generated data chunk. Defaults to 2048.
+        shift (int): Additional shift for next data chunk. With shift 0, next chunk will start at current_chunk[1]. Defaults to 128.
+        delay (float): Time delay between chunks, required to sync with audio
+    """
 
     def __init__(
         self,

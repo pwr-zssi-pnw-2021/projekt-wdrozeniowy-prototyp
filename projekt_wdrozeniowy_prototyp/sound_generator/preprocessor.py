@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import Optional
 
 import numpy as np
 from librosa import feature
@@ -33,18 +32,21 @@ class MFCCPreprocessor(Preprocessor):
 
     Uses librosa for feature extraction.
 
+    Attributes:
+        sampling_rate (int): Sampling rate of input data.
+        features_num (int): Number of MFCC features to generate. Defaults to 20.
     """
 
     def __init__(
         self,
         sampling_rate: int,
-        features_num: Optional[int] = 20,
+        features_num: int = 20,
     ) -> None:
         """Create MFCCPreprocessor.
 
         Args:
             sampling_rate (int): Sampling rate of input data.
-            features_num (Optional[int], optional): Number of MFCC features to generate. Defaults to 20.
+            features_num (int, optional): Number of MFCC features to generate. Defaults to 20.
         """
         self.sampling_rate = sampling_rate
         self.features_num = features_num

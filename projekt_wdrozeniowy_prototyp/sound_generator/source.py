@@ -7,7 +7,11 @@ import numpy as np
 
 
 class Source(ABC):
-    """Abstract class representing sound data source."""
+    """Abstract class representing sound data source.
+
+    Attributes:
+        sampling_rate (int): Source data sampling rate.
+    """
 
     def __init__(self, sampling_rate: int) -> None:
         """Create new sound data source.
@@ -31,7 +35,12 @@ class Source(ABC):
 
 
 class FileSource(Source):
-    """Sound file data source."""
+    """Sound file data source.
+
+    Attributes:
+        sampling_rate (int): Source data sampling rate.
+        data_source (numpy.ndarray): Loaded file data.
+    """
 
     def __init__(self, file_path: str, sampling_rate: int) -> None:
         """Create new sound data source using sund file.
@@ -74,6 +83,10 @@ class ArraySource(Source):
 
 
     Can be used for data loaded with other methods.
+
+    Attributes:
+        sampling_rate (int): Source data sampling rate.
+        data_source (numpy.ndarray): Loaded and resampled array.
     """
 
     def __init__(

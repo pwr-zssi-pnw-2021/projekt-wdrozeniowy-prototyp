@@ -80,15 +80,14 @@ class ArraySource(Source):
         self,
         arr: np.ndarray,
         arr_sampling_rate: int,
-        target_sampling_rate: Optional[int],
+        target_sampling_rate: Optional[int] = None,
     ) -> None:
         """Create new sound data source using numpy array.
-
 
         Args:
             arr (np.ndarray): Sound data.
             arr_sampling_rate (int): Sound data sampling rate.
-            target_sampling_rate (Optional[int]): Target sampling rate. If none or equal to arr, no resampling will be done.
+            target_sampling_rate (Optional[int], optional): Target sampling rate. If none or equal to arr, no resampling will be done. Defaults to None.
         """
         if (
             target_sampling_rate is not None

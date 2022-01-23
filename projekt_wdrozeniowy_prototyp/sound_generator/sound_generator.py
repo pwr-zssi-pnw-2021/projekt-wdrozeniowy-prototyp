@@ -31,7 +31,7 @@ class SoundGenerator:
         self.shift = shift
 
         # Delay for each chunk
-        self.delay = 1 / ((source.sampling_rate - chunk_size) / shift)
+        self.delay = 1 / ((source.sampling_rate - chunk_size) / (shift + 1))
 
     def generate(self) -> Iterable[np.ndarray]:
         """Generate sound data chunks.

@@ -32,3 +32,8 @@ Documentation can be built with make
 ```sh
 make html
 ```
+
+## Test coverage report
+```sh
+pytest --cov-report html --cov=projekt_wdrozeniowy_prototyp tests
+```

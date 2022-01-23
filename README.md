@@ -23,6 +23,9 @@ pre-commit install
 ```
 
 ## How to run
+```sh
+streamlit run projekt_wdrozeniowy_prototyp/interface.py
+```
 
 ## Documentation
 Documentation can be built with make

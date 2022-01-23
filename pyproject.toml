@@ -25,3 +25,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.coverage.report]
 exclude_lines = ['@abstractmethod']
+
+[tool.coverage.run]
+omit = ['projekt_wdrozeniowy_prototyp/interface.py']

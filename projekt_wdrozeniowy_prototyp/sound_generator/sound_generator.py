@@ -1,3 +1,4 @@
+import time
 from typing import Iterable, Optional
 
 import numpy as np
@@ -29,6 +30,9 @@ class SoundGenerator:
         self.chunk_size = chunk_size
         self.shift = shift
 
+        # Delay for each chunk
+        self.delay = 1 / ((source.sampling_rate - chunk_size) / shift)
+
     def generate(self) -> Iterable[np.ndarray]:
         """Generate sound data chunks.
 
@@ -44,6 +48,8 @@ class SoundGenerator:
 
         # Create chunks stream
         shifting = 0
+        last_yield_time = None
+        compensation_pool = 0.0
         for v in source_it:
             chunk.pop(0)
             chunk.append(v)
@@ -53,6 +59,24 @@ class SoundGenerator:
                 chunk_arr = np.array(chunk)
                 processed_chunk = self.preprocessor.process(chunk_arr)
 
+                yield_time = time.perf_counter()
+                if last_yield_time is not None:
+                    time_diff = yield_time - last_yield_time
+                    required_delay = self.delay - time_diff
+
+                    if required_delay > 0:
+                        if compensation_pool:
+                            # if compensation required, use remaining delay to compensate
+                            compensation = min(required_delay, compensation_pool)
+                            required_delay -= compensation
+                            compensation_pool -= compensation
+
+                        time.sleep(required_delay)
+                    else:
+                        # add negative delay to compensation pool
+                        compensation_pool -= required_delay
+
+                last_yield_time = time.perf_counter()
                 yield processed_chunk
             else:
                 shifting -= 1

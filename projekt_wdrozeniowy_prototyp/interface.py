@@ -33,8 +33,9 @@ if uploaded_file is not None:
     if st.button('Analyze'):
         placeholder = st.empty()
         for v in generator.generate():
-            # TODO process data
-            prob = np.random.uniform(0, 1, 7)
+            mlp = joblib.load('model/svm.joblib')
+            predict = mlp.predict_proba(v.T)
+            prob = np.mean(predict, axis=0)
 
             with placeholder.container():
                 for emotion, value in zip(EMOTIONS, prob):

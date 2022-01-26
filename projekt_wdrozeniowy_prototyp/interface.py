@@ -1,9 +1,10 @@
+import joblib
 import librosa
-import numpy as np
 import streamlit as st
 
 from projekt_wdrozeniowy_prototyp.sound_generator import (
     ArraySource,
+    MFCCPreprocessor,
     SoundGenerator,
 )
 
@@ -18,6 +19,7 @@ EMOTIONS = [
 ]
 
 st.title('Real Time Speech Emotion Recognition')
+model = joblib.load('./svm.joblib')
 
 
 uploaded_file = st.file_uploader('Select audio file')
@@ -27,14 +29,13 @@ if uploaded_file is not None:
 
     data, sr = librosa.load(uploaded_file, sr=48000)
     source = ArraySource(data, sr)
-    generator = SoundGenerator(source)
+    generator = SoundGenerator(source, MFCCPreprocessor(sr))
 
     st.caption('Press analyze to analyze emotions in audio.')
     if st.button('Analyze'):
         placeholder = st.empty()
         for v in generator.generate():
-            # TODO process data
-            prob = np.random.uniform(0, 1, 7)
+            prob = model.predict_proba(v.T).mean(axis=0)
 
             with placeholder.container():
                 for emotion, value in zip(EMOTIONS, prob):

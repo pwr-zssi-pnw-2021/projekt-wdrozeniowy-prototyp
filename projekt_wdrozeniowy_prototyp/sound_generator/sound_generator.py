@@ -3,7 +3,7 @@ from typing import Iterable, Optional
 
 import numpy as np
 
-from .preprocessor import Preprocessor, RawPreprocessor
+from .preprocessor import Preprocessor, RawPreprocessor, MFCCPreprocessor
 from .source import Source
 
 
@@ -34,7 +34,7 @@ class SoundGenerator:
             shift (int, optional): Additional shift for next data chunk. With shift 0, next chunk will start at current_chunk[1]. Defaults to 128.
         """
         self.source = source
-        self.preprocessor = preprocessor or RawPreprocessor()
+        self.preprocessor = MFCCPreprocessor(source.sampling_rate)
         self.chunk_size = chunk_size
         self.shift = shift
 
